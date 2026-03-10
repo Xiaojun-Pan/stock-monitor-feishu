@@ -1,0 +1,22 @@
+# 宝通科技股票监控定时任务配置
+# 将此内容添加到 crontab (crontab -e)
+
+# 股价检测 - 每分钟一次（只在交易时间）
+*/1 9-11,13-15 * * 1-5 /path/to/stock-monitor-feishu/scripts/smart_detector.sh >> /tmp/smart_stock_detect.log 2>&1
+
+# AI监控守护 - 每分钟检查一次
+* * * * * /path/to/stock-monitor-feishu/scripts/check_and_restart.sh >> /tmp/ai_monitor_cron.log 2>&1
+
+# 说明：
+# 1. 交易时间：周一至周五 9:00-11:30, 13:00-15:00
+# 2. 检测频率：每分钟
+# 3. 日志文件：/tmp/smart_stock_detect.log
+# 4. 守护日志：/tmp/ai_monitor_cron.log
+
+# 其他可选配置：
+
+# 每日清理旧日志（凌晨3点）
+0 3 * * * find /tmp/ -name "*stock*" -mtime +7 -delete
+
+# 每周一发送监控状态报告（早上8点）
+0 8 * * 1 /path/to/stock-monitor-feishu/scripts/check_status.sh | mail -s "股票监控周报" your-email@example.com

@@ -1,0 +1,54 @@
+name: stock-monitor-feishu
+description: 宝通科技股票监控技能 - 每分钟检测，飞书实时提醒
+version: 1.0.0
+author: 潘孝军
+license: MIT
+
+tags:
+  - stock
+  - monitor
+  - feishu
+  - alert
+  - 股票
+  - 监控
+  - 飞书
+
+compatibility:
+  openclaw: ">=2026.3.0"
+  platforms:
+    - linux
+    - macos
+
+dependencies:
+  system:
+    - bash
+    - curl
+    - jq
+    - bc
+
+files:
+  - SKILL.md
+  - README.md
+  - package.json
+  - scripts/*.sh
+
+install:
+  - chmod +x scripts/*.sh
+
+examples:
+  - name: 启动监控
+    command: bash scripts/start_monitor.sh
+    description: 启动宝通科技股票监控系统
+  
+  - name: 查看状态
+    command: bash scripts/check_status.sh
+    description: 查看监控系统状态和股价信息
+  
+  - name: 停止监控
+    command: bash scripts/stop_monitor.sh
+    description: 停止监控系统
+
+links:
+  repository: https://github.com/你的用户名/stock-monitor-feishu
+  documentation: https://github.com/你的用户名/stock-monitor-feishu#readme
+  issues: https://github.com/你的用户名/stock-monitor-feishu/issues
